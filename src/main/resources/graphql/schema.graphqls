@@ -1,0 +1,47 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+type Query {
+  findAll: [UserResponse]
+  findById(id:Int): UserResponse
+}
+type Mutation {
+  create(req:UserRequest): UserResponse
+  update(id: Int, req:UserRequest_update): UserResponse
+  delete(id:Int): UserResponse
+}
+type UserResponse {
+  id: ID
+  username: String
+  email: String
+  passwordHash: String
+  firstName: String
+  lastName: String
+  phone: String
+  isActive: Boolean
+  role: String
+}
+
+# Input types
+input UserRequest{
+  username: String
+  email: String
+  passwordHash: String
+  firstName: String
+  lastName: String
+  phone: String
+  isActive: Boolean
+  role: String
+}
+
+input UserRequest_update{
+  username: String
+  email: String
+  passwordHash: String
+  firstName: String
+  lastName: String
+  phone: String
+  isActive: Boolean
+  role: String
+}
