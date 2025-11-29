@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class UserGraphql {
     @Autowired
     private UserServiceImpl service;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @QueryMapping
     public List<UserResponse> findAll() {
