@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import com.api.furniture.dto.UserRequest;
@@ -19,6 +20,7 @@ import jakarta.validation.Valid;
 public class UserGraphql {
     @Autowired
     private UserServiceImpl service;
+    private PasswordEncoder passwordEncoder;
 
     @QueryMapping
     public List<UserResponse> findAll() {
@@ -32,6 +34,7 @@ public class UserGraphql {
 
     @MutationMapping
     public UserResponse create(@Valid @Argument UserRequest req) {
+        req.setPasswordHash(passwordEncoder.encode(req.getPasswordHash()));
         return service.create(req);
     }
 
