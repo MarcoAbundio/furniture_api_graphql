@@ -15,8 +15,10 @@ import com.api.furniture.dto.UserResponse;
 import com.api.furniture.service.impl.UserServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class UserGraphql {
     @Autowired
     private UserServiceImpl service;
